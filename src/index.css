@@ -1,0 +1,17 @@
+:root {
+  --orange:       #F7701E;
+  --pink:         #D63567;
+  --purple-dark:  #6B2A8D;
+  --purple-light: #C49FD4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  min-height: 100vh;
+}
