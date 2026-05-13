@@ -1,0 +1,39 @@
+.row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr 80px;
+  align-items: center;
+  padding: 14px 16px;
+  background: #ffffff;
+  border-radius: 10px;
+}
+
+@media (max-width: 600px) {
+  .row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px;
+  }
+}
+
+.task {
+  font-weight: 600;
+  color: var(--purple-dark);
+}
+
+.priority {
+  color: #555555;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.iconPlaceholder {
+  width: 28px;
+  height: 28px;
+  background: var(--purple-light);
+  border-radius: 6px;
+}
