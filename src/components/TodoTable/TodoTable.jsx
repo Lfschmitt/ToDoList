@@ -1,13 +1,7 @@
 import TodoRow from '../TodoRow/TodoRow'
 import styles from './TodoTable.module.css'
 
-const todos = [
-  { id: 1, task: 'Learn React',     priority: 'High',   fulfillment: 30  },
-  { id: 2, task: 'Shopping',        priority: 'High',   fulfillment: 0   },
-  { id: 3, task: 'Buy the tickets', priority: 'Medium', fulfillment: 100 },
-]
-
-function TodoTable() {
+function TodoTable({ todos, onEdit, onDelete, onToggle }) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
@@ -17,8 +11,17 @@ function TodoTable() {
         <span></span>
       </div>
       <div className={styles.list}>
+        {todos.length === 0 && (
+          <p className={styles.empty}>Nenhuma tarefa encontrada.</p>
+        )}
         {todos.map(todo => (
-          <TodoRow key={todo.id} {...todo} />
+          <TodoRow
+            key={todo.id}
+            todo={todo}
+            onEdit={() => onEdit(todo)}
+            onDelete={() => onDelete(todo.id)}
+            onToggle={() => onToggle(todo.id, todo.completed)}
+          />
         ))}
       </div>
     </div>
