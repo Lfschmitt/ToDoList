@@ -8,7 +8,8 @@ function Modal({ initialData, onClose, onSave }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    onSave({ task, priority, fulfillment })
+    if (!task.trim()) return
+    onSave({ task: task.trim(), priority, fulfillment })
   }
 
   return (
@@ -25,8 +26,10 @@ function Modal({ initialData, onClose, onSave }) {
               value={task}
               onChange={e => setTask(e.target.value)}
               placeholder="Nome da tarefa"
+              maxLength={200}
               required
             />
+            <span className={styles.counter}>{task.length}/200</span>
           </label>
           <label className={styles.label}>
             Priority

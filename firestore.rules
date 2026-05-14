@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Bloqueia explicitamente qualquer caminho não mapeado
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    match /todos/{userId}/tasks/{taskId} {
+
+      // Leitura: apenas o próprio usuário autenticado
+      allow read: if request.auth != null
+                  && request.auth.uid == userId;
+
+      // Criação e edição: autenticação + validação dos campos
+      allow create, update: if request.auth != null
+                            && request.auth.uid == userId
+                            && request.resource.data.task is string
+                            && request.resource.data.task.size() > 0
+                            && request.resource.data.task.size() <= 200
+                            && request.resource.data.priority in ['High', 'Medium', 'Low']
+                            && request.resource.data.fulfillment is number
+                            && request.resource.data.fulfillment >= 0
+                            && request.resource.data.fulfillment <= 100
+                            && request.resource.data.completed is bool;
+
+      // Deleção: apenas o próprio usuário autenticado
+      allow delete: if request.auth != null
+                    && request.auth.uid == userId;
+    }
+  }
+}
