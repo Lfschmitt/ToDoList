@@ -1,8 +1,14 @@
 import styles from './Header.module.css'
 
-function Header() {
+function Header({ onLogout, userName }) {
   return (
-    <h1 className={styles.title}>React To-Do List</h1>
+    <div className={styles.wrapper}>
+      <h1 className={styles.title}>React To-Do List</h1>
+      <div className={styles.user}>
+        <span className={styles.name}>{userName}</span>
+        <button className={styles.logout} onClick={onLogout}>Sair</button>
+      </div>
+    </div>
   )
 }
 

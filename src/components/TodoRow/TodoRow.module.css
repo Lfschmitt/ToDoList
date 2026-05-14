@@ -1,10 +1,15 @@
 .row {
   display: grid;
-  grid-template-columns: 2fr 1fr 2fr 80px;
+  grid-template-columns: 2fr 1fr 2fr 100px;
   align-items: center;
   padding: 14px 16px;
   background: #ffffff;
   border-radius: 10px;
+  transition: opacity 0.2s;
+}
+
+.completed {
+  opacity: 0.5;
 }
 
 @media (max-width: 600px) {
@@ -27,8 +32,15 @@
 
 .actions {
   display: flex;
-  gap: 10px;
+  gap: 6px;
   justify-content: flex-end;
+}
+
+.iconBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
 }
 
 .iconPlaceholder {
